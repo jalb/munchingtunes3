@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
+	<head>
+		<title>JavaScript Munching Squares by Jalb</title>
+		<meta name="author" content="Jean-Alain Le Borgne jalb@pobox.com">
+		<meta description="A Javascript version of the Munching Squares display hack">
+		<link rel="stylesheet" href="munchingsquares2.css"/>
+		<script type="text/javascript" src="log4javascript.js"></script>
+		<script type="text/javascript" src="canvas.js"></script>
+		<script type="text/javascript" src="munchingsquares2.js"></script>
+		<script type="text/javascript">
+			//<![CDATA[
+			// Create the logger
+			var log = log4javascript.getLogger(); 
+		
+			// Create a PopUpAppender with default options
+			var popUpAppender = new log4javascript.PopUpAppender();
+			
+			// Change the desired configuration options
+			popUpAppender.setFocusPopUp(true);
+			popUpAppender.setNewestMessageAtTop(true);
+			
+			// Add the appender to the logger
+			log.addAppender(popUpAppender);
+			
+			// Test the logger
+			//log.debug("Hello world!");
+			//]]>
+		</script>
+	</head>
+
+	<body>
+	<h1>JavaScript Munching Squares by Jalb</h1>
+	<table border="0"><tr><br><br><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;</td><td>
+	<canvas class="Canvas" id="canvas" width="256" height="256"></canvas>
+	</td></tr></table>
+	<form name="TheForm" class="Form">
+	Seed:&nbsp;<input type="text" name="Seed" value="127" maxlength=6 size=6 />
+	<INPUT type="button" name="Start" value="Start" onClick="StartMunchingSquares(TheForm.Seed.value)">
+	<INPUT type="button" name="Stop" value="Stop" onClick="StopMunchingSquares()">
+	</form>
+	<span class="Thanks">
+	<p>Javascript graphics: <a href="http://developer.mozilla.org/en/docs/Drawing_Graphics_with_Canvas">Canvas</a> with IE compatibility by <a href="http://me.eae.net/archive/2005/12/29/canvas-in-ie/">Emil A. Eklund</a></p><br>
+	<p>HSL to RGB color conversion by <a href="http://www.sharewonders.com/archives/2006/04/13/javascript-hsl-and-rgb-conversion-functions/">Bjorn Tipling</a></p><br>
+	<p>For debugging I used the excellent <a href="http://www.timdown.co.uk/log4javascript/">log4javascript</a></p><br>
+	<p>Original algorithm reference: M. Beeler, R.W. Gosper and R. Schroeppel: "HAKMEM", AIM-239, MIT AI Lab, February 1972. <a href="ftp://publications.ai.mit.edu/ai-publications/pdf/AIM-239.pdf">ftp://publications.ai.mit.edu/ai-publications/pdf/AIM-239.pdf</a></p><br>
+	</span>
+	</body>
+</html>
