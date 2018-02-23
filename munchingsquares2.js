@@ -134,6 +134,7 @@ function InitMunchingSquares() {
     ieCanvasInit();
 
     midi= document.getElementById('MIDI');
+    console.log('midi: ', midi);
     midi.loadPlugin({
 	soundfontUrl: "./soundfont/",
 	instrument: "acoustic_grand_piano",
@@ -141,14 +142,9 @@ function InitMunchingSquares() {
 	    console.log(state, progress);
 	},
 	onsuccess: function() {
-	    var delay = 0; // play one note every quarter second
-	    var note = 50; // the MIDI note
-	    var velocity = 127; // how hard the note hits
-	    // play the note
-	    midi.setVolume(0, 127);
-	    midi.noteOn(0, note, velocity, delay);
-	    midi.noteOff(0, note, delay + 0.75);
+	    console.log('MIDI plugin loaded.');
 	}
+	// No onfailure?
     });
 }
 
