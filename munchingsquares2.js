@@ -140,7 +140,7 @@ function InitMunchingSquares() {
 	}, 
 	onsuccess: function() {
             console.log('MIDI plugin loaded.'); 
-	}
+	}});
 }
 
 function StopTimer() {
