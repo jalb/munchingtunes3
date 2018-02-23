@@ -1,9 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd">
 	<head>
-		<title>JavaScript Munching Squares by Jalb</title>
+                <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>JavaScript Munching Tunes by Jalb</title>
 		<meta name="author" content="Jean-Alain Le Borgne jalb@pobox.com">
-		<meta description="A Javascript version of the Munching Squares display hack">
+		<meta description="A Javascript version of the Munching Tunes display hack">
 		<link rel="stylesheet" href="munchingsquares2.css"/>
+
+	<!-- polyfill -->
+	<script src="midi_js/inc/shim/Base64.js" type="text/javascript"></script>
+	<script src="midi_js/inc/shim/Base64binary.js" type="text/javascript"></script>
+	<script src="midi_js/inc/shim/WebAudioAPI.js" type="text/javascript"></script>
+	<!-- midi.js package -->
+	<script src="midi_js/js/midi/audioDetect.js" type="text/javascript"></script>
+	<script src="midi_js/js/midi/gm.js" type="text/javascript"></script>
+	<script src="midi_js/js/midi/loader.js" type="text/javascript"></script>
+	<script src="midi_js/js/midi/plugin.audiotag.js" type="text/javascript"></script>
+	<script src="midi_js/js/midi/plugin.webaudio.js" type="text/javascript"></script>
+	<script src="midi_js/js/midi/plugin.webmidi.js" type="text/javascript"></script>
+	<!-- utils -->
+	<script src="midi_js/js/util/dom_request_xhr.js" type="text/javascript"></script>
+	<script src="midi_js/js/util/dom_request_script.js" type="text/javascript"></script>
+
 		<script type="text/javascript" src="log4javascript.js"></script>
 		<script type="text/javascript" src="canvas.js"></script>
 		<script type="text/javascript" src="munchingsquares2.js"></script>
@@ -26,10 +43,33 @@
 			//log.debug("Hello world!");
 			//]]>
 		</script>
+<script type="text/javascript">
+
+window.onload = function () {
+	MIDI.loadPlugin({
+		soundfontUrl: "./soundfont/",
+		instrument: "acoustic_grand_piano",
+		onprogress: function(state, progress) {
+			console.log(state, progress);
+		},
+		onsuccess: function() {
+			var delay = 0; // play one note every quarter second
+			var note = 50; // the MIDI note
+			var velocity = 127; // how hard the note hits
+			// play the note
+			MIDI.setVolume(0, 127);
+			MIDI.noteOn(0, note, velocity, delay);
+			MIDI.noteOff(0, note, delay + 0.75);
+		}
+	});
+};
+
+</script>
+
 	</head>
 
 	<body>
-	<h1>JavaScript Munching Squares by Jalb</h1>
+	<h1>JavaScript Munching Tunes by Jalb</h1>
 	<table border="0"><tr><br><br><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;</td><td>
 	<canvas class="Canvas" id="canvas" width="256" height="256"></canvas>
 	</td></tr></table>
