@@ -1,3 +1,8 @@
+function getVersion()
+{
+    return 1;
+}
+
 // HSV to RGB color conversion by Bjorn Tipling
 // http://www.sharewonders.com/archives/2006/04/13/javascript-hsl-and-rgb-conversion-functions/
 function Hue_2_RGB( v1, v2, vH )
