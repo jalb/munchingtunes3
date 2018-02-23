@@ -1,7 +1,8 @@
-function getVersion()
-{
-    return 1;
-}
+if (typeof munchingsquares2 === 'undefined') munchingsquares2 = {};
+
+(function(root) { 'use strict';
+		  root.version= 1;
+})(munchingsquares2);
 
 // HSV to RGB color conversion by Bjorn Tipling
 // http://www.sharewonders.com/archives/2006/04/13/javascript-hsl-and-rgb-conversion-functions/
