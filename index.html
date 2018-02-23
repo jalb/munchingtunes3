@@ -23,7 +23,6 @@
 
 		<script type="text/javascript" src="log4javascript.js"></script>
 		<script type="text/javascript" src="canvas.js"></script>
-		<script type="text/javascript" src="munchingsquares2.js"></script>
 		<script type="text/javascript">
 			//<![CDATA[
 			// Create the logger
@@ -43,20 +42,7 @@
 			log.debug("Logger is ready!");
 			//]]>
 		</script>
-<script type="text/javascript">
-window.onload = function () {
-	MIDI.loadPlugin({
-		soundfontUrl: "./soundfont/",
-		instrument: "acoustic_grand_piano",
-		onprogress: function(state, progress) {
-		    console.log(state, progress);
-		},
-		onsuccess: function() {
-                    console.log('MIDI plugin loaded.');
-		}
-	});
-};
-</script>
+		<script type="text/javascript" src="munchingsquares2.js"></script>
 	</head>
 
 	<body>
