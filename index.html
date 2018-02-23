@@ -43,6 +43,20 @@
 			log.debug("Logger is ready!");
 			//]]>
 		</script>
+<script type="text/javascript">
+window.onload = function () {
+	MIDI.loadPlugin({
+		soundfontUrl: "./soundfont/",
+		instrument: "acoustic_grand_piano",
+		onprogress: function(state, progress) {
+		    console.log(state, progress);
+		},
+		onsuccess: function() {
+                    console.log('MIDI plugin loaded.');
+		}
+	});
+};
+</script>
 	</head>
 
 	<body>
