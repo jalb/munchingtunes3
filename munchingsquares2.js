@@ -134,29 +134,36 @@ function InitMunchingSquares() {
 }
 
 function StopTimer() {
-	clearInterval(timer);
-	timer= null;
-	timerActive= false;
+    clearInterval(timer);
+    timer= null;
+    timerActive= false;
 }
 
 var inAnimate= false;
 
 function Animate() {
-	var x= number & squaresXMask;
-	var y= (number >> squaresBits) ^ x;
-	var color= "#" + hsl_to_webColor(number / squaresMax, 1, 0.5);
+    var x= number & squaresXMask;
+    var y= (number >> squaresBits) ^ x;
+    var color= "#" + hsl_to_webColor(number / squaresMax, 1, 0.5);
 
-	ctx.save();
-        ctx.fillStyle = color;
-        ctx.translate(x,y);
-        ctx.fillRect(0,0,1,1);
-        ctx.restore();
+    ctx.save();
+    ctx.fillStyle = color;
+    ctx.translate(x,y);
+    ctx.fillRect(0,0,1,1);
+    ctx.restore();
 
-	number= (number + squaresSeed) & squaresMask;
-	//log.debug("number: " + number + ", x: " + x + ", y: " + y + ", color: " + color);
-	if (number == 0) {
-		StopTimer();
-	}
+    var delay = 0;
+    var note = x;
+    var velocity = 127;
+    MIDI.setVolume(0, 127);
+    MIDI.noteOn(0, note, velocity, delay);
+    MIDI.noteOff(0, note, delay + 0.75);
+
+    number= (number + squaresSeed) & squaresMask;
+    //log.debug("number: " + number + ", x: " + x + ", y: " + y + ", color: " + color);
+    if (number == 0) {
+	StopTimer();
+    }
 }
 
 function StopMunchingSquares() {
