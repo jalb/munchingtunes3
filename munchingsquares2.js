@@ -126,15 +126,21 @@ var timer;
 var timerActive= false;
 
 var ctx;
-var midi;
 
 function InitMunchingSquares() {
     squaresMax= squaresDimension * squaresDimension;
 
     ieCanvasInit();
 
-    midi= document.getElementById('MIDI');
-    console.log('midi: ', midi);
+    MIDI.loadPlugin({
+	soundfontUrl: "./soundfont/", 
+	instrument: "acoustic_grand_piano", 
+	onprogress: function(state, progress) {
+	    console.log(state, progress); 
+	}, 
+	onsuccess: function() {
+            console.log('MIDI plugin loaded.'); 
+	}
 }
 
 function StopTimer() {
@@ -159,9 +165,9 @@ function Animate() {
     var delay = 0;
     var note = x;
     var velocity = 127;
-    midi.setVolume(0, 127);
-    midi.noteOn(0, note, velocity, delay);
-    midi.noteOff(0, note, delay + 0.75);
+    MIDI.setVolume(0, 127);
+    MIDI.noteOn(0, note, velocity, delay);
+    MIDI.noteOff(0, note, delay + 0.75);
 
     number= (number + squaresSeed) & squaresMask;
     //log.debug("number: " + number + ", x: " + x + ", y: " + y + ", color: " + color);
