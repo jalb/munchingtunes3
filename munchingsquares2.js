@@ -199,7 +199,7 @@ function StartMunchingSquares(seed) {
     number= 0;
     if (!timerActive) {
 	    timerActive= true;
-	    timer = setInterval(Animate, 10);
+	    timer = setInterval(Animate, 100);
 	}
 }
 
