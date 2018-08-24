@@ -93,7 +93,7 @@
 
 			/// add gain + pitchShift
 			var gain = (velocity / 127) * (masterVolume / 127) * 2 - 1;
-			source.connect(ctx.Destination);
+			source.connect(ctx.destination);
 			source.playbackRate.value = 1; // pitch shift 
 			source.gainNode = ctx.createGain(); // gain
 			source.gainNode.connect(ctx.destination);
