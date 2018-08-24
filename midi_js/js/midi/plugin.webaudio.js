@@ -96,7 +96,6 @@
 			source.playbackRate.value = 1; // pitch shift 
 			source.gainNode = ctx.createGain(); // gain
 			source.gainNode.gain.value = Math.min(1.0, Math.max(-1.0, gain));
-		        source.connect(source.gainNode);
 		        source.panNode = ctx.createStereoPanner();
 		        source.panNode.pan.value= (pan - 64) / 128;
 		        source.connect(source.gainNode).connect(source.panNode).connect(ctx.Destination);
