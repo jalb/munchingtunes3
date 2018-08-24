@@ -172,7 +172,7 @@ function Animate() {
     var note = x;
     var velocity = 127;
     MIDI.setVolume(0, 127);
-    MIDI.noteOn(0, note, velocity, delay);
+    MIDI.noteOn(0, note, velocity, delay, x / 2);
     MIDI.noteOff(0, note, delay + 0.75);
 
     number= (number + squaresSeed) & squaresMask;

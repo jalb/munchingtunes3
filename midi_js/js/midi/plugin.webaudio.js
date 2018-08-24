@@ -56,7 +56,7 @@
 // 			}
 		};
 
-		midi.noteOn = function(channelId, noteId, velocity, delay) {
+	    midi.noteOn = function(channelId, noteId, velocity, delay, pan) {
 			delay = delay || 0;
 
 			/// check whether the note exists
@@ -93,12 +93,17 @@
 
 			/// add gain + pitchShift
 			var gain = (velocity / 127) * (masterVolume / 127) * 2 - 1;
-			source.connect(ctx.destination);
+			source.connect(ctx.Destination);
 			source.playbackRate.value = 1; // pitch shift 
 			source.gainNode = ctx.createGain(); // gain
 			source.gainNode.connect(ctx.destination);
 			source.gainNode.gain.value = Math.min(1.0, Math.max(-1.0, gain));
-			source.connect(source.gainNode);
+		        source.connect(source.gainNode);
+		        source.panNode = ctx.createStereoPanner();
+		        source.panNode.pan.value= (pan - 64) / 128;
+		        source.panNode.connect(ctx.destination);
+		        source.connect(source.panNode);
+		        //sourceNode.connect(gainNode).connect(source.panNode).connect(ctx.Destination);
 			///
 			if (useStreamingBuffer) {
 				if (delay) {
